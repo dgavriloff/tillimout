@@ -10,7 +10,7 @@ const Home = () => {
         <h1>Welcome To tillimout.com!(TIO)</h1>
       </div>
       <ul className="home-links">
-        <Link><li>Quick TIO</li></Link>
+        <Link to="/quicktio"><li>Quick TIO</li></Link>
         <Link><li>TIO feed</li></Link>
         <Link><li>Register</li></Link>
       </ul>
