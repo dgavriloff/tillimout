@@ -1,0 +1,37 @@
+.home-welcome{
+  display: flex;
+  justify-content: center;
+  margin: 10%;
+  font-size: 200%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.home-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.home-links a {
+  background-color: #499c5f;
+  padding: 3%;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.home-links a li {
+  font-size: 250%;
+  color: black;
+  display: flex;
+  justify-content:space-evenly;
+
+}
+
+.home-links a:hover{
+  background-color: #418a54;
+}
+

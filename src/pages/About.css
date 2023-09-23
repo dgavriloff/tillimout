@@ -1,0 +1,17 @@
+.about-body {
+  display: flex;
+  justify-content: center;
+}
+
+.about-text {
+  display: block;
+  justify-content: center;
+  width: 50%;
+  background-color: #418a54;
+}
+
+.about-p {
+  font-size: 200%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
