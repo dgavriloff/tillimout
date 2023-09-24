@@ -11,7 +11,7 @@ const Home = () => {
       </div>
       <ul className="home-links">
         <Link to="/quicktio"><li>Quick TIO</li></Link>
-        <Link><li>TIO feed</li></Link>
+        <Link to="/feed"><li>TIO feed</li></Link>
         <Link><li>Register</li></Link>
       </ul>
     </div>

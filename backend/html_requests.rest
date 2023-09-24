@@ -1,0 +1,23 @@
+GET http://localhost:3001/api/tios
+###
+
+GET http://localhost:3001/api/tios/2
+###
+
+DELETE  http://localhost:3001/api/tios/2
+###
+
+POST http://localhost:3001/api/tios
+Content-Type: application/json
+  {
+    "id" : 3,
+    "username" : "say",
+    "password" : "hello",
+    "endDate" : "2024-01-05T19:24:32.618Z",
+    "branch" : "UMC",
+    "name" : "Denis off",
+    "rank" : "Corporal",
+    "likes" : 0
+  }
+
+
