@@ -36,7 +36,7 @@ const Timer = ({endDate}) => {
 
   return (
 
-    <div className="timer">{formattedDuration} {console.log(formatDuration(getDuration()))}</div>
+    <div className="timer">{formattedDuration}</div>
 
   )
 }

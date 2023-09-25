@@ -1,58 +1,65 @@
 const express = require("express")
 const app = express()
 const cors = require('cors')
+const fs = require('fs')
 
 app.use(cors())
 
 app.use(express.json())
 
-let TIOs = [
-  {
-    id : 1,
-    username : "admin",
-    password : "password",
-    endDate : "2024-01-05T19:24:32.618Z",
-    branch : "United States Marine Corps",
-    name : "Denis Gavriloff",
-    rank : "Corporal",
-    likes : 0
-  },
-  {
-    id : 2,
-    username : "user",
-    password : "pass",
-    endDate : "2024-01-05T19:24:32.618Z",
-    branch : "USMC",
-    name : "Denis Gavriloff",
-    rank : "Corporal",
-    likes : 0
-  },
-  {
-    id : 3,
-    username : "ooousay",
-    password : "hello",
-    endDate : "2024-01-05T19:24:32.618Z",
-    likes : 0
+const readDb = (func) => {
+  fs.readFile('./db.json', 'utf8',(err, jsonString) => {
+    if (err){
+      console.log(`Error reading file: ${err}`)
+      return
+    }
+    try {
+      func(jsonString)
+    } catch {
+      console.log("Error getting TIOs")
+    }
+  }) 
+}
+
+const writeDb = (jsonString) => {
+  fs.writeFile('./db.json', jsonString, err => {
+    if(err)
+      console.log(`Error writing file: ${err}`)
+    else
+      console.log("Successfully wrote to file")
+    })
   }
-]
+
+
+
 
 app.get('/api/tios', (request, response) => {
-  response.json(TIOs)
+  readDb((jsonString) => {
+     return response.json(JSON.parse(jsonString))
+  })
 })
 
 app.get('/api/tios/:id', (request, response) => {
   const id = Number(request.params.id)
-  const TIO = TIOs.find(TIO => id === TIO.id)
-  response.json(TIO)
+  readDb((jsonString) => {
+    const TIO = JSON.parse(jsonString).find(TIO => id === TIO.id)
+    if (!TIO)
+      return response.status(404).end()
+    return response.json(TIO)
+ })
 })
+
 
 app.delete('/api/tios/:id', (request, response) => {
   const id = Number(request.params.id)
-  TIOs = TIOs.filter(TIO => id != TIO.id)
-  response.status(204).end()
+  readDb((jsonString) => {
+    writeDb(JSON.stringify(JSON.parse(jsonString).filter(tio => tio.id != id)))
+    response.status(204).end()
+  })
 })
 
-const generateId = () => {
+const generateId = (TIOs) => {
+
   const maxId = TIOs.length > 0
   ? Math.max(...TIOs.map(t => t.id))
   : 0
@@ -66,9 +73,12 @@ app.post('/api/tios', (request, response) => {
       error : 'insufficient data entry'
     })
   }
+  readDb((jsonString) => {
 
-  const TIO = {
-      id : generateId(),
+    const TIOs = JSON.parse(jsonString)
+
+    const TIO = {
+      id : generateId(TIOs),
       username : body.username,
       password : body.password,
       endDate : body.endDate,
@@ -78,9 +88,12 @@ app.post('/api/tios', (request, response) => {
       likes : 0
     }
 
-    TIOs.concat(TIO)
+    const temp = TIOs.concat(TIO)
+    writeDb(JSON.stringify(temp))
+    console.log("here")
     response.json(TIO)
   })
+})
 
 
 const PORT = 3001

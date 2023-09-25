@@ -1,0 +1,29 @@
+[
+{
+  "id" : 1,
+  "username" : "admin",
+  "password" : "password",
+  "endDate" : "2024-01-05T19:24:32.618Z",
+  "branch" : "United States Marine Corps",
+  "name" : "Denis Gavriloff",
+  "rank" : "Corporal",
+  "likes" : 0
+},
+{
+  "id" : 2,
+  "username" : "user",
+  "password" : "pass",
+  "endDate" : "2024-01-05T19:24:32.618Z",
+  "branch" : "USMC",
+  "name" : "Denis Gavriloff",
+  "rank" : "Corporal",
+  "likes" : 0
+},
+{
+  "id" : 3,
+  "username" : "ooousay",
+  "password" : "hello",
+  "endDate" : "2024-01-05T19:24:32.618Z",
+  "likes" : 0
+}
+]

@@ -25,9 +25,8 @@ const Feed = () => {
   return (
     <div>
       <Header />
-      {console.log("feed")}
       
-      {userData ? <UserTIO userData = {userData[0]}/> : <h1>Loading...</h1>}
+      {userData ? <ul>{userData.toReversed().map(userData => <li  key={userData.id}><UserTIO userData = {userData} /></li>)}</ul> : <h1>Loading...</h1>}
       
 
     </div>
