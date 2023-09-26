@@ -2,9 +2,10 @@ const express = require("express")
 const app = express()
 const cors = require('cors')
 const fs = require('fs')
+const baseUrl = '/api/tios'
 
 app.use(cors())
-
+app.use(express.static('dist'))
 app.use(express.json())
 
 const readDb = (func) => {
@@ -33,13 +34,13 @@ const writeDb = (jsonString) => {
 
 
 
-app.get('/api/tios', (request, response) => {
+app.get(baseUrl, (request, response) => {
   readDb((jsonString) => {
      return response.json(JSON.parse(jsonString))
   })
 })
 
-app.get('/api/tios/:id', (request, response) => {
+app.get(`${baseUrl}/:id`, (request, response) => {
   const id = Number(request.params.id)
   readDb((jsonString) => {
     const TIO = JSON.parse(jsonString).find(TIO => id === TIO.id)
@@ -50,7 +51,7 @@ app.get('/api/tios/:id', (request, response) => {
 })
 
 
-app.delete('/api/tios/:id', (request, response) => {
+app.delete(`${baseUrl}/:id`, (request, response) => {
   const id = Number(request.params.id)
   readDb((jsonString) => {
     writeDb(JSON.stringify(JSON.parse(jsonString).filter(tio => tio.id != id)))
@@ -66,7 +67,7 @@ const generateId = (TIOs) => {
   return maxId + 1
 }
 
-app.post('/api/tios', (request, response) => {
+app.post(baseUrl, (request, response) => {
   const body = request.body
   if(!body.username || !body.password || !body.endDate){
     return response.status(400).json({
@@ -96,7 +97,7 @@ app.post('/api/tios', (request, response) => {
 })
 
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port http://localhost:${PORT}`)
 })
