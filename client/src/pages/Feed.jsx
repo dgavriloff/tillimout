@@ -8,7 +8,7 @@ const Feed = () => {
   const [userData, setUserData] = useState(undefined)
   
   const timer = setTimeout(()=>{
-    axios.get('http://localhost:3001/api/tios')
+    axios.get('/api/tios')
     .then((response) => {
       setUserData(response.data)
       console.log("getting data")

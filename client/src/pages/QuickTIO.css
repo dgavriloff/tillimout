@@ -1,10 +1,14 @@
+body {
+  background-color: #2C5F2D;
+}
+
 .content{
   display: flex;
   justify-content: center;
 }
 
 .content-box{
-  background-color: green;
+  background-color: #97BC62;
   margin-top: 10%;
 }
 

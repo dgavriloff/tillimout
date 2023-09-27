@@ -6,14 +6,20 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build:ui": "rmdir dist /s /q && cd ../client/ && npm run build && mkdir C:\\Users\\denis\\Documents\\GitHub\\tillimout\\backend\\dist && xcopy dist ..\\backend\\dist\\ /E/H",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "fly logs"
   },
   "author": "Denis Gavriloff",
   "license": "UNLICENSED",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "lint": "^1.1.2"
+    "lint": "^1.1.2",
+    "mongoose": "^7.5.3"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.10",

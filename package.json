@@ -4,9 +4,9 @@
   "description": "Timer for Veterans",
   "author": "Denis Gavriloff",
   "license": "MIT",
-
   "scripts": {
     "devc": "cd ./client && npm run dev",
-    "devs": "cd ./backend && npm run dev"
+    "devs": "cd ./backend && npm run dev",
+    "dev": "start cmd /k npm run devc && npm run devs"
   }
 }
